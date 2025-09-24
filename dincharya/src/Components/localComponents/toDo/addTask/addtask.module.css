@@ -1,0 +1,42 @@
+.newTask {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input {
+  height: 55px;
+  width: 70%;
+  padding: 12px;
+  border: 2px solid #d1d3d4;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #8052ec;
+}
+
+.addButton {
+  height: 45px;
+  padding: 0 25px;
+  background: linear-gradient(135deg, #8052ec, #d161ff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.addButton:hover {
+  transform: scale(1.05);
+}
