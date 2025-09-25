@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import styles from "./header.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-
-  const [currentView, setCurrentView] = useState("signup"); 
+  const [currentView, setCurrentView] = useState("signup");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    setCurrentView("login");
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentView("signup");
+
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <header className={styles.header}>
@@ -17,11 +31,10 @@ function Header() {
               className={`${styles.navButton} ${
                 currentView === "login" ? styles.active : ""
               }`}
-              onClick={() => setCurrentView("login")}
+              onClick={handleLoginClick}
             >
               Login
             </button>
-           
           </>
         ) : (
           <>
@@ -33,10 +46,7 @@ function Header() {
             >
               My Tasks
             </button>
-            <button
-              className={styles.navButton}
-              onClick={() => setIsLoggedIn(false)}
-            >
+            <button className={styles.navButton} onClick={handleLogout}>
               Logout
             </button>
           </>

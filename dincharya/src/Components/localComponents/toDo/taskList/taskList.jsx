@@ -58,27 +58,27 @@ const TaskList = () => {
 
     if (!editTask) {
       toast.info("Please enter a task!");
-    }
+    } else {
+      try {
+        const response = await fetch(`${updateTaskUrl}/${selectedTask._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ task: editTask.trim() }),
+        });
 
-    try {
-      const response = await fetch(`${updateTaskUrl}/${selectedTask._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ task: editTask.trim() }),
-      });
-
-      if (response.ok) {
-        toast.info("Task updated successfully!");
-        onClose();
-        fetchTasks();
-      } else {
+        if (response.ok) {
+          toast.info("Task updated successfully!");
+          onClose();
+          fetchTasks();
+        } else {
+          toast.error("Failed to update task.");
+        }
+      } catch (error) {
+        Response.json("issue in updating task:", error);
         toast.error("Failed to update task.");
       }
-    } catch (error) {
-      Response.json("issue in updating task:", error);
-      toast.error("Failed to update task.");
     }
   };
 
